@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EZBooking Search Results</title>
+        <link rel="stylesheet" href="styles.css">
+        <script type="text/javascript" src="lib/jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="lib/handlebars-v4.0.4.js"></script>
+        <script type="text/javascript" src="model.js"></script>
+        <script type="text/javascript">
+         $("document").ready(function() {
+            var template = $("#itemTemplate").html();
+            var renderer = Handlebars.compile(template);
+            var result = renderer(data);
+            
+            $("#container").html(result);
+         });
+        </script>
+    </head>
+    <body>
+        <!-- Template definition -->
+        <script type="text/x-handlebars-template" id="itemTemplate">
+          {{#each hotels}}
+            <div class="hotel">
+              {{!-- Hotel details --}}
+              <div><img class="hotelImage" src="resources/{{image}}"></div>
+              <div class="hotelName">{{name}}</div>
+              <div>{{description}}</div>
+              <div>Contact us: {{phone}}</div>
+              
+              {{#if discount}}
+                <div class="price-strikethrough">${{price}}</div>  
+                <div class="price">${{discountedPrice this}}</div>  
+              {{else}}
+                <div class="price">${{price}}</div>
+              {{/if}}
+              
+              {{#if amenities}}
+                <div>Has some amenities</div>
+              {{else}}
+                <div>Has no amenities</div>
+              {{/if}}
+            </div>
+          {{/each}}
+        </script>
+        <!-- Page content -->
+        <h1>EZBooking</h1>
+        <h2>Hotels</h2>
+
+        <!-- This is the container where the template will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>

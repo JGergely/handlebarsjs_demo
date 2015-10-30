@@ -1,2 +1,3 @@
-# handlebarsjs_demo
-Handlebars JS Demo
+# Handlebars JS Demo
+This is a demo project for Handlebars JS.
+
